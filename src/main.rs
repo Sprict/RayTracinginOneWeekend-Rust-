@@ -9,16 +9,23 @@ fn main() {
     let mut img = RgbImage::new(image_width, image_height);
 
     // Render
-    for x in 0..image_width {
-        for y in 0..image_height {
-            let r = (x as f64 / (image_width - 1) as f64);
-            let g = (y as f64 / (image_height - 1) as f64);
+    for y in 0..image_height {
+        for x in 0..image_width {
+            // ピクセル座標(y)から、論理座標(v)への変換
+            // y=0 (画像上部) のとき、v=1.0 (計算上の上) にしたい
+            let u = x as f64 / (image_width - 1) as f64;
+            let v = 1.0 - (y as f64 / (image_height - 1) as f64); // ここで反転！
+
+            // ... (色計算は u, v を使う) ...
+            let r = u;
+            let g = v;
             let b = 0.25;
 
-            let ir = (255.999 * r) as u8;
-            let ig = (255.999 * g) as u8;
-            let ib = (255.999 * b) as u8;
+            let ir = (255.0 * r).clamp(0.0, 255.0) as u8;
+            let ig = (255.0 * g).clamp(0.0, 255.0) as u8;
+            let ib = (255.0 * b).clamp(0.0, 255.0) as u8;
 
+            // 書き込みは物理座標 (x, y) に行う
             let pixel = img.get_pixel_mut(x, y);
             *pixel = Rgb([ir, ig, ib]);
         }
