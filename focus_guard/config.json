@@ -1,0 +1,28 @@
+{
+  "schedule": {
+    "start_time": "10:00",
+    "end_time": "21:00",
+    "enabled": true
+  },
+  "blacklist": [
+    "steam",
+    "EpicGamesLauncher",
+    "Battle.net",
+    "Agent",
+    "Overwatch",
+    "Overwatch Gen 2",
+    "Origin",
+    "Uplay",
+    "UbisoftConnect",
+    "GalaxyClient",
+    "RiotClientServices",
+    "LeagueClient",
+    "Valorant-Win64-Shipping",
+    "FortniteClient-Win64-Shipping",
+    "dota2",
+    "csgo",
+    "ffxiv_dx11",
+    "Minecraft.Windows",
+    "javaw"
+  ]
+}

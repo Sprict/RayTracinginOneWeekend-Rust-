@@ -1,3 +1,5 @@
+mod vec3;
+
 use image::{Rgb, RgbImage};
 
 fn main() {
@@ -19,7 +21,7 @@ fn main() {
             // ... (色計算は u, v を使う) ...
             let r = u;
             let g = v;
-            let b = 0.25;
+            let b = 0.25_f64;
 
             let ir = (255.0 * r).clamp(0.0, 255.0) as u8;
             let ig = (255.0 * g).clamp(0.0, 255.0) as u8;
