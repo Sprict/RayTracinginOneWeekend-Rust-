@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "[Code-to-Play] Allocating resources for audit..."
+python focus_guard/auditor.py

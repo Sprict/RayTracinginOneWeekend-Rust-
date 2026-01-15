@@ -1,10 +1,10 @@
-mod vec3;
-mod progress_bar;
 mod color;
+mod progress_bar;
 mod ray;
+mod vec3;
 
-use progress_bar::SimpleProgressBar;
 use color::to_rgb;
+use progress_bar::SimpleProgressBar;
 use ray::Ray;
 use vec3::Vec3;
 
@@ -29,7 +29,7 @@ fn main() {
     let image_width = 400;
     let image_height = (image_width as f64 / aspect_ratio) as u32;
 
-    // Create a new image buffer        
+    // Create a new image buffer
     let mut img = RgbImage::new(image_width, image_height);
 
     // Camera
@@ -40,7 +40,8 @@ fn main() {
     let origin = Point3::new(0.0, 0.0, 0.0);
     let horizontal = Vec3::new(viewport_width, 0.0, 0.0);
     let vertical = Vec3::new(0.0, viewport_height, 0.0);
-    let lower_left_corner = origin - horizontal / 2.0 - vertical / 2.0 - Vec3::new(0.0, 0.0, focal_length);
+    let lower_left_corner =
+        origin - horizontal / 2.0 - vertical / 2.0 - Vec3::new(0.0, 0.0, focal_length);
 
     // Initialize Progress Bar
     let mut bar = SimpleProgressBar::new(image_height as usize);
@@ -60,7 +61,7 @@ fn main() {
             );
 
             let pixel_color = ray_color(&r);
-            
+
             // imageクレートのバッファに書き込み
             let pixel = img.get_pixel_mut(x, y);
             *pixel = color::to_rgb(&pixel_color);
