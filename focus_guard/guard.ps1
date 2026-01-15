@@ -36,8 +36,18 @@ while ($true) {
     # Configが無効または読み込めていない場合はスキップ
     if (-not $cachedConfig -or -not $cachedConfig.schedule.enabled) { continue }
 
-    # 3. 時間チェック (メモリ上の計算のみ、超高速)
     $now = Get-Date
+
+    # 週末スキップ判定
+    if ($cachedConfig.schedule.skip_weekends) {
+        $day = $now.DayOfWeek
+        if ($day -eq [DayOfWeek]::Saturday -or $day -eq [DayOfWeek]::Sunday) {
+            # 週末なので何もしない
+            continue
+        }
+    }
+
+    # 3. 時間チェック (メモリ上の計算のみ、超高速)
     $startStr = $cachedConfig.schedule.start_time
     $endStr = $cachedConfig.schedule.end_time
 
